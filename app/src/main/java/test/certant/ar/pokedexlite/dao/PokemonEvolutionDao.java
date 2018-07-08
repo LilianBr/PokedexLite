@@ -11,7 +11,7 @@ import test.certant.ar.pokedexlite.beans.PokemonEvolution;
 
 public class PokemonEvolutionDao {
 
-    public List<PokemonEvolution> list(JSONArray evolutionsJson) {
+    public static List<PokemonEvolution> list(JSONArray evolutionsJson) {
         List<PokemonEvolution> evolutions = new ArrayList<>();
         try {
             for(int i = 0 ; i<evolutionsJson.length() ; i++) {

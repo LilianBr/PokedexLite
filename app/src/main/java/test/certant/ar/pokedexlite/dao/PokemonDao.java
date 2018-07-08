@@ -15,14 +15,7 @@ import test.certant.ar.pokedexlite.beans.PokemonEvolution;
 
 public class PokemonDao {
 
-    private PokemonEvolutionDao pokemonEvolutionDao;
-
-    public PokemonDao() {
-        super();
-        pokemonEvolutionDao = new PokemonEvolutionDao();
-    }
-
-    public List<Pokemon> list(Context context) {
+    public static List<Pokemon> list(Context context) {
         List<Pokemon> pokemons = new ArrayList<>();
         try {
             JSONObject pokedex = new JSONObject(DaoFactory.loadPokedex(context));
@@ -32,7 +25,7 @@ public class PokemonDao {
                 pokemon.setCurrentLevel(pokemonsJson.getJSONObject(i).getInt("currentLevel"));
 
                 JSONArray evolutionsJson = pokemonsJson.getJSONObject(i).getJSONArray("evolution");
-                pokemon.setEvolutions(pokemonEvolutionDao.list(evolutionsJson));
+                pokemon.setEvolutions(PokemonEvolutionDao.list(evolutionsJson));
                 pokemons.add(chooseEvolution(pokemon));
             }
         } catch (Exception e) {
@@ -41,7 +34,7 @@ public class PokemonDao {
         return pokemons;
     }
 
-    private Pokemon chooseEvolution(Pokemon pokemon) {
+    private static Pokemon chooseEvolution(Pokemon pokemon) {
         boolean evolutionFound = false;
         List<PokemonEvolution> evolutions = pokemon.getEvolutions();
         int index = 0;
@@ -56,7 +49,7 @@ public class PokemonDao {
         return pokemon;
     }
 
-    public int findByName(List<Pokemon> pokemons, Pokemon pokemon) {
+    public static int findByName(List<Pokemon> pokemons, Pokemon pokemon) {
         boolean pokemonFound = false;
         int index = -1;
         Log.i("debug", String.valueOf(pokemons.size()));
@@ -69,7 +62,7 @@ public class PokemonDao {
         return index;
     }
 
-    public JSONObject toJson(List<Pokemon> pokemons) {
+    public static JSONObject toJson(List<Pokemon> pokemons) {
         JSONObject rootJson = new JSONObject();
         JSONObject pokedexJson = new JSONObject();
         JSONArray pokemonsJson = new JSONArray();
