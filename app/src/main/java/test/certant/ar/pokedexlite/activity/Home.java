@@ -2,11 +2,14 @@ package test.certant.ar.pokedexlite.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 import test.certant.ar.pokedexlite.R;
@@ -33,26 +36,42 @@ public class Home extends AppCompatActivity {
     }
 
     private void initialize() {
-        /*File file = new File(this.getFilesDir(), DaoFactory.fileName);
+        // Initialization of the pokemon.json in the device
+        File file = new File(this.getFilesDir(), DaoFactory.fileName);
         try {
             if (file.createNewFile()) {
                 DaoFactory.loadPokemons(this.getApplicationContext(), DaoFactory.loadPokemonsFile(this.getApplicationContext()).getBytes());
             }
         } catch (IOException e) {
             // Empty
-        }*/
-        DaoFactory.loadPokemons(this.getApplicationContext(), DaoFactory.loadPokemonsFile(this.getApplicationContext()).getBytes());
+        }
         final List<Pokemon> pokemons = PokemonDao.list(this.getApplicationContext());
-
         initializePokemonsList(pokemons);
+
+        initializeRefreshLayout();
+    }
+
+    private void initializeRefreshLayout() {
+        final SwipeRefreshLayout refreshLayout = findViewById(R.id.swipeRefreshLayout);
+        refreshLayout.setOnRefreshListener(
+                new SwipeRefreshLayout.OnRefreshListener() {
+                    @Override
+                    public void onRefresh() {
+                        final List<Pokemon> pokemons = PokemonDao.list(getApplicationContext());
+                        initializePokemonsList(pokemons);
+                    }
+                }
+        );
     }
 
     private void initializePokemonsList(final List<Pokemon> pokemons) {
-        final ListView listview = findViewById(R.id.pokemons);
-
+        final ListView pokemonsView = findViewById(R.id.pokemons);
         PokemonAdapter adapter = new PokemonAdapter(this, pokemons);
-        listview.setAdapter(adapter);
-        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        pokemonsView.setAdapter(adapter);
+
+        final SwipeRefreshLayout refreshLayout = findViewById(R.id.swipeRefreshLayout);
+        refreshLayout.setRefreshing(false);
+        pokemonsView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent,
                                     View view,

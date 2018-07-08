@@ -6,28 +6,34 @@
     android:visibility="visible"
     tools:context=".activity.Home">
 
-    <LinearLayout
+    <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/swipeRefreshLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/title"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="46dp"
-            android:layout_weight="1"
-            android:text="@string/titleHome"
-            android:textAlignment="center"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:visibility="visible" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <ListView
-            android:id="@+id/pokemons"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:visibility="visible"
-            tools:listitem="@layout/pokemon_item" />
-    </LinearLayout>
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:layout_weight="1"
+                android:text="@string/titleHome"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:visibility="visible" />
+
+            <ListView
+                android:id="@+id/pokemons"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:visibility="visible"
+                tools:listitem="@layout/pokemon_item" />
+        </LinearLayout>
+    </android.support.v4.widget.SwipeRefreshLayout>
 </android.support.constraint.ConstraintLayout>
