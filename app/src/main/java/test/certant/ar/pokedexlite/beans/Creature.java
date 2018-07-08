@@ -1,7 +1,5 @@
 package test.certant.ar.pokedexlite.beans;
 
-import android.util.Log;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +8,7 @@ public class Creature {
     private String name;
     private List<String> abilities;
 
-    protected Creature() {
+    Creature() {
         abilities = new ArrayList<>();
     }
 
@@ -23,12 +21,11 @@ public class Creature {
         if (!abilities.isEmpty()) {
             StringBuilder abilitiesBuilder = new StringBuilder();
             String separator = " - ";
-            Log.i("debug", "starting abilities");
             for (String ability : getAbilities()) {
-                Log.i("debug", ability);
                 abilitiesBuilder.append(ability);
                 abilitiesBuilder.append(separator);
             }
+            // Delete the last separator
             int indexSeparator = abilitiesBuilder.lastIndexOf(separator);
             abilitiesBuilder.replace(indexSeparator, indexSeparator + separator.length(), "");
             abilitiesString = abilitiesBuilder.toString();
