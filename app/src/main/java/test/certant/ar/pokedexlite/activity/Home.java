@@ -7,8 +7,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.List;
 
 import test.certant.ar.pokedexlite.R;
@@ -35,14 +33,15 @@ public class Home extends AppCompatActivity {
     }
 
     private void initialize() {
-        File file = new File(this.getFilesDir(), DaoFactory.fileName);
+        /*File file = new File(this.getFilesDir(), DaoFactory.fileName);
         try {
             if (file.createNewFile()) {
                 DaoFactory.loadPokemons(this.getApplicationContext(), DaoFactory.loadPokemonsFile(this.getApplicationContext()).getBytes());
             }
         } catch (IOException e) {
             // Empty
-        }
+        }*/
+        DaoFactory.loadPokemons(this.getApplicationContext(), DaoFactory.loadPokemonsFile(this.getApplicationContext()).getBytes());
         final List<Pokemon> pokemons = PokemonDao.list(this.getApplicationContext());
 
         initializePokemonsList(pokemons);

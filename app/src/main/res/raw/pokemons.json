@@ -8,24 +8,24 @@
             "name": "Bulbasaur",
             "requiredLevel": 0,
             "abilities": [
-              "grass",
-              "poison"
+              "Grass",
+              "Poison"
             ]
           },
           {
             "name": "Ivysaur",
             "requiredLevel": 45,
             "abilities": [
-              "grass",
-              "poison"
+              "Grass",
+              "Poison"
             ]
           },
           {
             "name": "Venusaur",
             "requiredLevel": 75,
             "abilities": [
-              "grass",
-              "poison"
+              "Grass",
+              "Poison"
             ]
           }
         ]
@@ -37,49 +37,48 @@
             "name": "Charmander",
             "requiredLevel": 0,
             "abilities": [
-              "fire"
+              "Fire"
             ]
           },
           {
             "name": "Charmeleon",
             "requiredLevel": 45,
             "abilities": [
-              "fire"
+              "Fire"
             ]
           },
           {
             "name": "Charizard",
             "requiredLevel": 75,
             "abilities": [
-              "fire",
-              "flying"
+              "Fire",
+              "Flying"
             ]
           }
         ]
       },
       {
-        "currentLevel": 42,
+        "currentLevel": 98,
         "evolution": [
           {
-            "name": "Charmander",
+            "name": "Caterpie",
             "requiredLevel": 0,
             "abilities": [
-              "fire"
+              "Bug"
             ]
           },
           {
-            "name": "Charmeleon",
+            "name": "Metapod",
             "requiredLevel": 45,
             "abilities": [
-              "fire"
+              "Bug"
             ]
           },
           {
-            "name": "Charizard",
+            "name": "Butterfree",
             "requiredLevel": 75,
             "abilities": [
-              "fire",
-              "flying"
+              "Bug"
             ]
           }
         ]
@@ -91,21 +90,21 @@
             "name": "Squirtle",
             "requiredLevel": 0,
             "abilities": [
-              "water"
+              "Water"
             ]
           },
           {
             "name": "Wartortle",
             "requiredLevel": 45,
             "abilities": [
-              "water"
+              "Water"
             ]
           },
           {
             "name": "Blastoise",
             "requiredLevel": 75,
             "abilities": [
-              "water"
+              "Water"
             ]
           }
         ]
@@ -132,6 +131,129 @@
             "requiredLevel": 75,
             "abilities": [
               "Electic",
+              "Psychic"
+            ]
+          }
+        ]
+      },
+      {
+        "currentLevel": 99,
+        "evolution": [
+          {
+            "name": "Rattata",
+            "requiredLevel": 0,
+            "abilities": [
+              "Normal"
+            ]
+          },
+          {
+            "name": "Raticate",
+            "requiredLevel": 60,
+            "abilities": [
+              "Normal"
+            ]
+          }
+        ]
+      },
+      {
+        "currentLevel": 32,
+        "evolution": [
+          {
+            "name": "Pidgey",
+            "requiredLevel": 0,
+            "abilities": [
+              "Normal",
+              "Flying"
+            ]
+          },
+          {
+            "name": "Pidgeotto",
+            "requiredLevel": 45,
+            "abilities": [
+              "Normal",
+              "Flying"
+            ]
+          },
+          {
+            "name": "Pidgeot",
+            "requiredLevel": 75,
+            "abilities": [
+              "Normal",
+              "Flying"
+            ]
+          }
+        ]
+      },
+      {
+        "currentLevel": 32,
+        "evolution": [
+          {
+            "name": "Pikachu",
+            "requiredLevel": 0,
+            "abilities": [
+              "Electric"
+            ]
+          },
+          {
+            "name": "Raichu",
+            "requiredLevel": 45,
+            "abilities": [
+              "Electric"
+            ]
+          },
+          {
+            "name": "Raichu",
+            "requiredLevel": 75,
+            "abilities": [
+              "Electic",
+              "Psychic"
+            ]
+          }
+        ]
+      },
+      {
+        "currentLevel": 23,
+        "evolution": [
+          {
+            "name": "Oddish",
+            "requiredLevel": 0,
+            "abilities": [
+              "Grass",
+              "Poison"
+            ]
+          },
+          {
+            "name": "Gloom",
+            "requiredLevel": 45,
+            "abilities": [
+              "Grass",
+              "Poison"
+            ]
+          },
+          {
+            "name": "Vileplume",
+            "requiredLevel": 75,
+            "abilities": [
+              "Grass",
+              "Poison"
+            ]
+          }
+        ]
+      },
+      {
+        "currentLevel": 74,
+        "evolution": [
+          {
+            "name": "Mewtwo",
+            "requiredLevel": 0,
+            "abilities": [
+              "Psychic"
+            ]
+          },
+          {
+            "name": "Mew",
+            "requiredLevel": 50,
+            "abilities": [
               "Psychic"
             ]
           }
