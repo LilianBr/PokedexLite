@@ -57,23 +57,24 @@ public class DetailsPage extends AppCompatActivity {
                                              final EditText levelEditText) {
 
         DetailPokemon fragment = (DetailPokemon) getSupportFragmentManager().findFragmentById(R.id.detailsFragment);
-        final Button saveDetails = fragment.getView().findViewById(R.id.saveDetails);
-        saveDetails.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                String newLevelString = levelEditText.getText().toString();
-                if (!newLevelString.isEmpty() && Integer.valueOf(newLevelString) <= 100) {
-                    currentPokemon.setCurrentLevel(Integer.valueOf(newLevelString));
+        if (fragment != null && fragment.getView() != null) {
+            final Button saveDetails = fragment.getView().findViewById(R.id.saveDetails);
+            saveDetails.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    String newLevelString = levelEditText.getText().toString();
+                    if (!newLevelString.isEmpty() && Integer.valueOf(newLevelString) <= 100) {
+                        currentPokemon.setCurrentLevel(Integer.valueOf(newLevelString));
 
-                    currentPokemon.setEvolutions(
-                            modifyNameEvolution(currentPokemon, nameEditText.getText().toString()));
-                    pokemons.set(indexCurrentPokemon, currentPokemon);
-                    DaoFactory.loadPokemons(saveDetails.getContext(), PokemonDao.toJson(pokemons).toString().getBytes());
-                } else {
-                    Toast.makeText(DetailsPage.this, "The level should be between 0 and 100", Toast.LENGTH_SHORT).show();
+                        currentPokemon.setEvolutions(
+                                modifyNameEvolution(currentPokemon, nameEditText.getText().toString()));
+                        pokemons.set(indexCurrentPokemon, currentPokemon);
+                        DaoFactory.loadPokemons(saveDetails.getContext(), PokemonDao.toJson(pokemons).toString().getBytes());
+                    } else {
+                        Toast.makeText(DetailsPage.this, "The level should be between 0 and 100", Toast.LENGTH_SHORT).show();
+                    }
                 }
-
-            }
-        });
+            });
+        }
     }
 
     private void initializeAbilitiesList(Pokemon currentPokemon) {
