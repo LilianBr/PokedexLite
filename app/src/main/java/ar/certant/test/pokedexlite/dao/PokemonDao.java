@@ -35,17 +35,19 @@ public class PokemonDao {
     }
 
     private static Pokemon chooseEvolution(Pokemon pokemon) {
-        boolean evolutionFound = false;
         List<PokemonEvolution> evolutions = pokemon.getEvolutions();
-        int index = 0;
-        while(!evolutionFound && index < evolutions.size()) {
-            if (pokemon.getCurrentLevel() >= evolutions.get(index).getRequiredLevel()) {
-                pokemon.setName(evolutions.get(index).getName());
-                pokemon.setAbilities(evolutions.get(index).getAbilities());
-                evolutionFound = true;
+        // Default evolution
+        PokemonEvolution pokemonEvolutionFound = new PokemonEvolution();
+        pokemonEvolutionFound.setName("Egg");
+        pokemonEvolutionFound.setAbilities(new ArrayList<String>());
+
+        for (PokemonEvolution evolution : evolutions) {
+            if (pokemon.getCurrentLevel() >= evolution.getRequiredLevel()) {
+                pokemonEvolutionFound = evolution;
             }
-            index++;
         }
+        pokemon.setName(pokemonEvolutionFound.getName());
+        pokemon.setAbilities(pokemonEvolutionFound.getAbilities());
         return pokemon;
     }
 
