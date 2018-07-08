@@ -7,7 +7,7 @@ public class Pokemon extends Creature{
 
     private List<PokemonEvolution> evolutions;
 
-    private Integer currentLevel;
+    private Integer currentLevel = 0;
 
     public Pokemon() {
         super();

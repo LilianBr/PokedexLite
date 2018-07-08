@@ -2,7 +2,7 @@ package test.certant.ar.pokedexlite.beans;
 
 public class PokemonEvolution extends Creature{
 
-    private Integer requiredLevel;
+    private Integer requiredLevel = 0;
 
     public PokemonEvolution() {
         super();
