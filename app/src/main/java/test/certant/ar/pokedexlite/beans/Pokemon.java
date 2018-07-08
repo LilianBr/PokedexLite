@@ -22,7 +22,6 @@ public class Pokemon extends Creature{
         this.evolutions = evolutions;
     }
 
-
     public Integer getCurrentLevel() {
         return currentLevel;
     }

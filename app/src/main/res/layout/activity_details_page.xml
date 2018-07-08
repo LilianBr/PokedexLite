@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.DetailsPage">
+
+    <fragment
+        android:id="@+id/fragment"
+        android:name="test.certant.ar.pokedexlite.activity.fragment.DetailPokemon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        tools:layout="@layout/fragment_detail_pokemon" />
+
+    <fragment
+        android:id="@+id/fragment2"
+        android:name="test.certant.ar.pokedexlite.activity.fragment.Evolutions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        tools:layout="@layout/fragment_evolutions" />
+
+</LinearLayout>
