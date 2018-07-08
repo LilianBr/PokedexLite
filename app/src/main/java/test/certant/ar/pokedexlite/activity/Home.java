@@ -21,23 +21,20 @@ public class Home extends AppCompatActivity {
 
     private static final String ARG_POKEMON_NAME = "pokemonName";
 
-    private PokemonDao pokemonDao;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        pokemonDao = new PokemonDao();
-        loadPage();
+        initialize();
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
-        loadPage();
+        initialize();
     }
 
-    private void loadPage() {
+    private void initialize() {
         File file = new File(this.getFilesDir(), DaoFactory.fileName);
         try {
             if (file.createNewFile()) {
@@ -46,19 +43,22 @@ public class Home extends AppCompatActivity {
         } catch (IOException e) {
             // Empty
         }
-        final List<Pokemon> pokemons = pokemonDao.list(this.getApplicationContext());
+        final List<Pokemon> pokemons = PokemonDao.list(this.getApplicationContext());
 
+        initializePokemonsList(pokemons);
+    }
+
+    private void initializePokemonsList(final List<Pokemon> pokemons) {
         final ListView listview = findViewById(R.id.pokemons);
 
         PokemonAdapter adapter = new PokemonAdapter(this, pokemons);
-
         listview.setAdapter(adapter);
-
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
             @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
+            public void onItemClick(AdapterView<?> parent,
+                                    View view,
+                                    int position,
+                                    long id) {
                 String pokemonName = pokemons.get(position).getName();
                 Intent intent = new Intent(getApplicationContext(), DetailsPage.class);
                 intent.putExtra(ARG_POKEMON_NAME, pokemonName);
