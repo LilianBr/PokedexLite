@@ -2,6 +2,7 @@ package test.certant.ar.pokedexlite.dao;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,5 +30,24 @@ public class PokemonEvolutionDao {
             e.printStackTrace();
         }
         return evolutions;
+    }
+
+
+    public static JSONArray toJson(List<PokemonEvolution> evolutions) throws JSONException {
+        JSONArray evolutionsJson = new JSONArray();
+        for (PokemonEvolution evolution : evolutions) {
+            JSONObject evolutionJson = new JSONObject();
+            evolutionJson.put("name", evolution.getName());
+            evolutionJson.put("requiredLevel", evolution.getRequiredLevel());
+
+            // Abilities Array
+            JSONArray abilities = new JSONArray();
+            for (String ability : evolution.getAbilities()) {
+                abilities.put(ability);
+            }
+            evolutionJson.put("abilities", abilities);
+            evolutionsJson.put(evolutionJson);
+        }
+        return evolutionsJson;
     }
 }

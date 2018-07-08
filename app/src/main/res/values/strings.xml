@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">PokedexLite</string>
+    <string name="app_name">Pokedex Lite</string>
+    <string name="title_activity_details_page">Your Pokémon</string>
 </resources>

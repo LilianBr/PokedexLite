@@ -1,0 +1,142 @@
+{
+  "pokedex": {
+    "pokemon": [
+      {
+        "currentLevel": 10,
+        "evolution": [
+          {
+            "name": "Bulbasaur",
+            "requiredLevel": 0,
+            "abilities": [
+              "grass",
+              "poison"
+            ]
+          },
+          {
+            "name": "Ivysaur",
+            "requiredLevel": 45,
+            "abilities": [
+              "grass",
+              "poison"
+            ]
+          },
+          {
+            "name": "Venusaur",
+            "requiredLevel": 75,
+            "abilities": [
+              "grass",
+              "poison"
+            ]
+          }
+        ]
+      },
+      {
+        "currentLevel": 42,
+        "evolution": [
+          {
+            "name": "Charmander",
+            "requiredLevel": 0,
+            "abilities": [
+              "fire"
+            ]
+          },
+          {
+            "name": "Charmeleon",
+            "requiredLevel": 45,
+            "abilities": [
+              "fire"
+            ]
+          },
+          {
+            "name": "Charizard",
+            "requiredLevel": 75,
+            "abilities": [
+              "fire",
+              "flying"
+            ]
+          }
+        ]
+      },
+      {
+        "currentLevel": 42,
+        "evolution": [
+          {
+            "name": "Charmander",
+            "requiredLevel": 0,
+            "abilities": [
+              "fire"
+            ]
+          },
+          {
+            "name": "Charmeleon",
+            "requiredLevel": 45,
+            "abilities": [
+              "fire"
+            ]
+          },
+          {
+            "name": "Charizard",
+            "requiredLevel": 75,
+            "abilities": [
+              "fire",
+              "flying"
+            ]
+          }
+        ]
+      },
+      {
+        "currentLevel": 2,
+        "evolution": [
+          {
+            "name": "Squirtle",
+            "requiredLevel": 0,
+            "abilities": [
+              "water"
+            ]
+          },
+          {
+            "name": "Wartortle",
+            "requiredLevel": 45,
+            "abilities": [
+              "water"
+            ]
+          },
+          {
+            "name": "Blastoise",
+            "requiredLevel": 75,
+            "abilities": [
+              "water"
+            ]
+          }
+        ]
+      },
+      {
+        "currentLevel": 32,
+        "evolution": [
+          {
+            "name": "Pikachu",
+            "requiredLevel": 0,
+            "abilities": [
+              "Electric"
+            ]
+          },
+          {
+            "name": "Raichu",
+            "requiredLevel": 45,
+            "abilities": [
+              "Electric"
+            ]
+          },
+          {
+            "name": "Raichu",
+            "requiredLevel": 75,
+            "abilities": [
+              "Electic",
+              "Psychic"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -24,7 +25,6 @@ public class PokemonDao {
     public List<Pokemon> list(Context context) {
         List<Pokemon> pokemons = new ArrayList<>();
         try {
-            Log.i("hello2",DaoFactory.loadPokedex(context));
             JSONObject pokedex = new JSONObject(DaoFactory.loadPokedex(context));
             JSONArray pokemonsJson = pokedex.getJSONObject("pokedex").getJSONArray("pokemon");
             for(int i = 0 ; i<pokemonsJson.length() ; i++) {
@@ -46,12 +46,45 @@ public class PokemonDao {
         List<PokemonEvolution> evolutions = pokemon.getEvolutions();
         int index = 0;
         while(!evolutionFound && index < evolutions.size()) {
-            if(pokemon.getCurrentLevel() <= evolutions.get(index).getRequiredLevel()) {
+            if (pokemon.getCurrentLevel() >= evolutions.get(index).getRequiredLevel()) {
                 pokemon.setName(evolutions.get(index).getName());
+                pokemon.setAbilities(evolutions.get(index).getAbilities());
                 evolutionFound = true;
             }
             index++;
         }
         return pokemon;
+    }
+
+    public int findByName(List<Pokemon> pokemons, Pokemon pokemon) {
+        boolean pokemonFound = false;
+        int index = -1;
+        Log.i("debug", String.valueOf(pokemons.size()));
+        while (!pokemonFound && (index + 1) < pokemons.size()) {
+            index++;
+            if (pokemons.get(index).getName().equals(pokemon.getName())) {
+                pokemonFound = true;
+            }
+        }
+        return index;
+    }
+
+    public JSONObject toJson(List<Pokemon> pokemons) {
+        JSONObject rootJson = new JSONObject();
+        JSONObject pokedexJson = new JSONObject();
+        JSONArray pokemonsJson = new JSONArray();
+        try {
+            for (Pokemon pokemon : pokemons) {
+                JSONObject pokemonJson = new JSONObject();
+                pokemonJson.put("currentLevel", pokemon.getCurrentLevel());
+                pokemonJson.put("evolution", PokemonEvolutionDao.toJson(pokemon.getEvolutions()));
+                pokemonsJson.put(pokemonJson);
+            }
+            pokedexJson.put("pokemon", pokemonsJson);
+            rootJson.put("pokedex", pokedexJson);
+        } catch (JSONException e) {
+            rootJson = new JSONObject();
+        }
+        return rootJson;
     }
 }
