@@ -19,6 +19,7 @@ public class PokemonEvolutionDao {
                 evolution.setName(evolutionsJson.getJSONObject(i).getString("name"));
                 evolution.setRequiredLevel(evolutionsJson.getJSONObject(i).getInt("requiredLevel"));
                 JSONArray abilitiesJson = evolutionsJson.getJSONObject(i).getJSONArray("abilities");
+
                 List<String> abilities = new ArrayList<>();
                 for (int j = 0 ; j < abilitiesJson.length() ; j++) {
                      abilities.add(abilitiesJson.getString(j));
@@ -27,7 +28,7 @@ public class PokemonEvolutionDao {
                 evolutions.add(evolution);
             }
         } catch (JSONException e) {
-            e.printStackTrace();
+            evolutions = new ArrayList<>();
         }
         return evolutions;
     }
@@ -46,6 +47,7 @@ public class PokemonEvolutionDao {
                 abilities.put(ability);
             }
             evolutionJson.put("abilities", abilities);
+
             evolutionsJson.put(evolutionJson);
         }
         return evolutionsJson;

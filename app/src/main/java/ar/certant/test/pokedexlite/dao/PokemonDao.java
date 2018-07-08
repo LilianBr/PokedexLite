@@ -29,7 +29,7 @@ public class PokemonDao {
                 pokemons.add(chooseEvolution(pokemon));
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            pokemons = new ArrayList<>();
         }
         return pokemons;
     }

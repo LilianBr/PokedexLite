@@ -30,7 +30,7 @@ public class PokemonAdapter extends ArrayAdapter<Pokemon> {
         TextView levelTypesView = convertView.findViewById(R.id.levelTypes);
 
         String levelTypes = "[" + pokemon.getCurrentLevel() + "] " + pokemon.getAbilitiesString();
-        levelTypesView.setText(String.valueOf(levelTypes));
+        levelTypesView.setText(levelTypes);
         nameView.setText(pokemon.getName());
 
         return convertView;

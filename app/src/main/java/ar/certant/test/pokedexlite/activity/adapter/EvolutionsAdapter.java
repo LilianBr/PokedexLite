@@ -14,8 +14,8 @@ import ar.certant.test.pokedexlite.beans.PokemonEvolution;
 
 public class EvolutionsAdapter extends ArrayAdapter<PokemonEvolution> {
 
-    public EvolutionsAdapter(Context context, List<PokemonEvolution> pokemons) {
-        super(context, 0, pokemons);
+    public EvolutionsAdapter(Context context, List<PokemonEvolution> evolutions) {
+        super(context, 0, evolutions);
     }
 
     @Override
@@ -26,13 +26,13 @@ public class EvolutionsAdapter extends ArrayAdapter<PokemonEvolution> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.evolution_item, parent, false);
         }
 
-        TextView name = convertView.findViewById(R.id.evolutionName);
-        TextView level = convertView.findViewById(R.id.requiredLevel);
-        TextView types = convertView.findViewById(R.id.types);
+        TextView nameView = convertView.findViewById(R.id.evolutionName);
+        TextView levelView = convertView.findViewById(R.id.requiredLevel);
+        TextView typesView = convertView.findViewById(R.id.types);
 
-        name.setText(evolution.getName());
-        level.setText(String.valueOf(evolution.getRequiredLevel()));
-        types.setText(evolution.getAbilitiesString());
+        nameView.setText(evolution.getName());
+        levelView.setText(String.valueOf(evolution.getRequiredLevel()));
+        typesView.setText(evolution.getAbilitiesString());
         return convertView;
     }
 }

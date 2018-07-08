@@ -35,7 +35,8 @@ public class DetailsPage extends AppCompatActivity {
         final List<Pokemon> pokemons = PokemonDao.list(this.getApplicationContext());
         final int indexCurrentPokemon = PokemonDao.findByName(pokemons, pokemonToFetch);
 
-        if (indexCurrentPokemon != -1) {
+        // Initialize each components
+        if (indexCurrentPokemon > 0) {
 
             final Pokemon currentPokemon = pokemons.get(indexCurrentPokemon);
 
@@ -46,13 +47,12 @@ public class DetailsPage extends AppCompatActivity {
 
             initializeEvolutionsList(currentPokemon);
             initializeAbilitiesList(currentPokemon);
-            initializeSaveDetailsButton(pokemons, indexCurrentPokemon, currentPokemon, nameEditText, levelEditText);
+            initializeSaveDetailsButton(pokemons, indexCurrentPokemon, nameEditText, levelEditText);
         }
     }
 
     private void initializeSaveDetailsButton(final List<Pokemon> pokemons,
                                              final int indexCurrentPokemon,
-                                             final Pokemon currentPokemon,
                                              final EditText nameEditText,
                                              final EditText levelEditText) {
 
@@ -62,12 +62,14 @@ public class DetailsPage extends AppCompatActivity {
             saveDetails.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     String newLevelString = levelEditText.getText().toString();
+                    // Case: Level between 0 and 100
                     if (!newLevelString.isEmpty() && Integer.valueOf(newLevelString) <= 100) {
+                        Pokemon currentPokemon = pokemons.get(indexCurrentPokemon);
                         currentPokemon.setCurrentLevel(Integer.valueOf(newLevelString));
-
                         currentPokemon.setEvolutions(
                                 modifyNameEvolution(currentPokemon, nameEditText.getText().toString()));
                         pokemons.set(indexCurrentPokemon, currentPokemon);
+                        // Rewrite the pokedex file with the changes
                         DaoFactory.loadPokemons(saveDetails.getContext(), PokemonDao.toJson(pokemons).toString().getBytes());
                     } else {
                         Toast.makeText(DetailsPage.this, "The level should be between 0 and 100", Toast.LENGTH_SHORT).show();
@@ -78,7 +80,7 @@ public class DetailsPage extends AppCompatActivity {
     }
 
     private void initializeAbilitiesList(Pokemon currentPokemon) {
-        final ArrayAdapter<String> abilitiesAdapter = new ArrayAdapter<String>(this,
+        final ArrayAdapter<String> abilitiesAdapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, currentPokemon.getAbilities());
         final ListView abilitiesView = findViewById(R.id.abilities);
         abilitiesView.setAdapter(abilitiesAdapter);
@@ -92,16 +94,14 @@ public class DetailsPage extends AppCompatActivity {
     }
 
     private List<PokemonEvolution> modifyNameEvolution(Pokemon pokemon, String newName) {
-        boolean evolutionFound = false;
         List<PokemonEvolution> evolutions = pokemon.getEvolutions();
-        int index = 0;
-        while (!evolutionFound && index < evolutions.size()) {
+        int evolutionIndex = 0;
+        for (int index = 0; index < evolutions.size(); index++) {
             if (pokemon.getCurrentLevel() >= evolutions.get(index).getRequiredLevel()) {
-                evolutions.get(index).setName(newName);
-                evolutionFound = true;
+                evolutionIndex = index;
             }
-            index++;
         }
+        evolutions.get(evolutionIndex).setName(newName);
         return evolutions;
     }
 }

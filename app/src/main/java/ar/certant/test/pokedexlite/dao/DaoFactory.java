@@ -23,14 +23,14 @@ public class DaoFactory {
     }
 
     public static void loadPokemons(Context context, byte[] content) {
-        File file = new File(context.getFilesDir(), fileName);
+        File pokedexFile = new File(context.getFilesDir(), fileName);
         FileOutputStream outputStream;
         try {
             outputStream = context.getApplicationContext().openFileOutput(fileName, Context.MODE_PRIVATE);
             outputStream.write(content);
             outputStream.close();
         } catch (Exception e) {
-            e.printStackTrace();
+            // Empty
         }
     }
 
@@ -38,11 +38,11 @@ public class DaoFactory {
         String pokemonsFile;
         Writer writer = new StringWriter();
         char[] buffer = new char[1024];
-        try (InputStream is = context.getResources().openRawResource(R.raw.pokemons)) {
-            Reader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
-            int n;
-            while ((n = reader.read(buffer)) != -1) {
-                writer.write(buffer, 0, n);
+        try (InputStream inputStream = context.getResources().openRawResource(R.raw.pokemons)) {
+            Reader reader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
+            int character;
+            while ((character = reader.read(buffer)) != -1) {
+                writer.write(buffer, 0, character);
             }
             pokemonsFile = writer.toString();
         } catch (Exception e) {
@@ -52,27 +52,27 @@ public class DaoFactory {
     }
 
     public static String loadPokedex(Context context) {
-        File file = new File(context.getFilesDir(), fileName);
-        FileInputStream fin;
+        File pokedexFile = new File(context.getFilesDir(), fileName);
+        FileInputStream fileInputStream;
         String pokedexString;
         try {
-            fin = new FileInputStream(file);
-            pokedexString = convertStreamToString(fin);
-            fin.close();
+            fileInputStream = new FileInputStream(pokedexFile);
+            pokedexString = convertStreamToString(fileInputStream);
+            fileInputStream.close();
         } catch (Exception e) {
             pokedexString = "{}";
         }
         return pokedexString;
     }
 
-    private static String convertStreamToString(InputStream is) throws Exception {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-        StringBuilder sb = new StringBuilder();
+    private static String convertStreamToString(InputStream inputStream) throws Exception {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+        StringBuilder stringBuilder = new StringBuilder();
         String line;
         while ((line = reader.readLine()) != null) {
-            sb.append(line).append("\n");
+            stringBuilder.append(line).append("\n");
         }
         reader.close();
-        return sb.toString();
+        return stringBuilder.toString();
     }
 }

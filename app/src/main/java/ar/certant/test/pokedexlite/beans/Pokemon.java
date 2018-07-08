@@ -7,11 +7,12 @@ public class Pokemon extends Creature{
 
     private List<PokemonEvolution> evolutions;
 
-    private Integer currentLevel = 0;
+    private Integer currentLevel;
 
     public Pokemon() {
         super();
         evolutions = new ArrayList<>();
+        currentLevel = 0;
     }
 
     public List<PokemonEvolution> getEvolutions() {

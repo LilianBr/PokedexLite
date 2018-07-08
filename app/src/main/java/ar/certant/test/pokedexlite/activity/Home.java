@@ -66,8 +66,8 @@ public class Home extends AppCompatActivity {
 
     private void initializePokemonsList(final List<Pokemon> pokemons) {
         final ListView pokemonsView = findViewById(R.id.pokemons);
-        PokemonAdapter adapter = new PokemonAdapter(this, pokemons);
-        pokemonsView.setAdapter(adapter);
+        PokemonAdapter pokemonAdapter = new PokemonAdapter(this, pokemons);
+        pokemonsView.setAdapter(pokemonAdapter);
 
         final SwipeRefreshLayout refreshLayout = findViewById(R.id.swipeRefreshLayout);
         refreshLayout.setRefreshing(false);

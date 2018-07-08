@@ -10,6 +10,7 @@ public class Creature {
 
     Creature() {
         abilities = new ArrayList<>();
+        name = "";
     }
 
     public List<String> getAbilities() {
