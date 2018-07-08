@@ -12,9 +12,7 @@ import java.util.List;
 import test.certant.ar.pokedexlite.R;
 import test.certant.ar.pokedexlite.beans.Pokemon;
 
-public class PokemonAdapter extends ArrayAdapter<Pokemon>
-
-{
+public class PokemonAdapter extends ArrayAdapter<Pokemon> {
 
     public PokemonAdapter(Context context, List<Pokemon> pokemons) {
         super(context, 0, pokemons);
@@ -28,15 +26,12 @@ public class PokemonAdapter extends ArrayAdapter<Pokemon>
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.pokemon_item, parent, false);
         }
 
-        TextView name = convertView.findViewById(R.id.pokemonName);
-        TextView levelTypes = convertView.findViewById(R.id.levelTypes);
+        TextView nameView = convertView.findViewById(R.id.pokemonName);
+        TextView levelTypesView = convertView.findViewById(R.id.levelTypes);
 
-        name.setText(pokemon.getName());
-
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("[").append(pokemon.getCurrentLevel()).append("]");
-        stringBuilder.append(" ").append(pokemon.getAbilitiesString());
-        levelTypes.setText(String.valueOf(stringBuilder.toString()));
+        String levelTypes = "[" + pokemon.getCurrentLevel() + "] " + pokemon.getAbilitiesString();
+        levelTypesView.setText(String.valueOf(levelTypes));
+        nameView.setText(pokemon.getName());
 
         return convertView;
     }
