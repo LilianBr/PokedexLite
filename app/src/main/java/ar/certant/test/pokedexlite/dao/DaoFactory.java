@@ -35,6 +35,7 @@ public class DaoFactory {
     }
 
     public static String loadPokemonsFile(Context context) {
+        String pokemonsFile;
         Writer writer = new StringWriter();
         char[] buffer = new char[1024];
         try (InputStream is = context.getResources().openRawResource(R.raw.pokemons)) {
@@ -43,10 +44,11 @@ public class DaoFactory {
             while ((n = reader.read(buffer)) != -1) {
                 writer.write(buffer, 0, n);
             }
+            pokemonsFile = writer.toString();
         } catch (Exception e) {
-            e.printStackTrace();
+            pokemonsFile = "{}";
         }
-        return writer.toString();
+        return pokemonsFile;
     }
 
     public static String loadPokedex(Context context) {
