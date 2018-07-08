@@ -16,7 +16,8 @@
             android:layout_width="match_parent"
             android:layout_height="46dp"
             android:layout_weight="1"
-            android:text="My Pokemons"
+            android:text="@string/titleHome"
+            android:textAlignment="center"
             android:textSize="18sp"
             android:textStyle="bold"
             android:visibility="visible" />

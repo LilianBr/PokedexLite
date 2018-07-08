@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">Pokedex Lite</string>
     <string name="title_activity_details_page">Your Pokémon</string>
+    <string name="titleHome">Your Pokémons</string>
+    <string name="titleAbilities">Abilities</string>
+    <string name="saveDetails">Save</string>
+    <string name="requiredLevelLabel">Required Level</string>
+    <string name="typesLabel">Abilities(s)</string>
 </resources>

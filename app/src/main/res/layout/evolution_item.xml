@@ -9,7 +9,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="Evolution"
         android:textAlignment="center"
         android:textSize="18sp"
         android:textStyle="bold" />
@@ -27,7 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_column="0"
             android:layout_row="0"
-            android:text="Required Level"
+            android:text="@string/requiredLevelLabel"
             android:textColor="@color/colorPrimary" />
 
         <TextView
@@ -38,7 +37,7 @@
             android:layout_row="1"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Types"
+            android:text="@string/typesLabel"
             android:textColor="@color/colorPrimary" />
 
         <TextView
@@ -49,7 +48,6 @@
             android:layout_row="0"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="50"
             android:textColor="@color/colorAccent" />
 
         <TextView
@@ -58,7 +56,6 @@
             android:layout_height="wrap_content"
             android:layout_column="1"
             android:layout_row="1"
-            android:text="Water"
             android:textColor="@color/colorAccent" />
     </GridLayout>
 
