@@ -2,12 +2,11 @@ package test.certant.ar.pokedexlite.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import java.util.List;
 
@@ -40,19 +39,23 @@ public class DetailsPage extends AppCompatActivity {
             final Pokemon currentPokemon = pokemons.get(indexCurrentPokemon);
 
             // Complete the pokemon details
-            DetailPokemon fragment = (DetailPokemon) getSupportFragmentManager().findFragmentById(R.id.fragment);
-            final EditText nameEditText = fragment.getView().findViewById(R.id.name);
+            DetailPokemon fragment = (DetailPokemon) getSupportFragmentManager().findFragmentById(R.id.detailsFragment);
+            final EditText nameEditText = findViewById(R.id.name);
             nameEditText.setText(currentPokemon.getName());
-            final EditText levelEditText = fragment.getView().findViewById(R.id.level);
+            final EditText levelEditText = findViewById(R.id.level);
             levelEditText.setText(String.valueOf(currentPokemon.getCurrentLevel()));
-            final TextView typesTextView = fragment.getView().findViewById(R.id.types);
-            typesTextView.setText(currentPokemon.getAbilitiesString());
 
             // Complete the evolutions list
             List<PokemonEvolution> evolutions = currentPokemon.getEvolutions();
-            EvolutionsAdapter adapter = new EvolutionsAdapter(this, evolutions);
-            final ListView listView = findViewById(R.id.evolutions);
-            listView.setAdapter(adapter);
+            EvolutionsAdapter evolutionsAdapter = new EvolutionsAdapter(this, evolutions);
+            final ListView evolutionsView = findViewById(R.id.evolutions);
+            evolutionsView.setAdapter(evolutionsAdapter);
+
+            // Complete the abilities list
+            final ArrayAdapter<String> abilitiesAdapter = new ArrayAdapter<String>(this,
+                    android.R.layout.simple_list_item_1, currentPokemon.getAbilities());
+            final ListView abilitiesView = findViewById(R.id.abilities);
+            abilitiesView.setAdapter(abilitiesAdapter);
 
             //Add saving details
             final Button saveDetails = fragment.getView().findViewById(R.id.saveDetails);
@@ -62,12 +65,9 @@ public class DetailsPage extends AppCompatActivity {
                     modifyNameEvolution(currentPokemon, nameEditText.getText().toString());
                     pokemons.set(indexCurrentPokemon, currentPokemon);
                     String debug = pokemonDao.toJson(pokemons).toString();
-                    Log.i("debug", debug);
-                    DaoFactory.loadPokemons(listView.getContext(), debug.getBytes());
-                    onRestart();
+                    DaoFactory.loadPokemons(evolutionsView.getContext(), debug.getBytes());
                 }
             });
-
         }
     }
 
