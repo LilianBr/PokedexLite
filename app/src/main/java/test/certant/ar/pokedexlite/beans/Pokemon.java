@@ -18,6 +18,16 @@ public class Pokemon extends Creature{
         return evolutions;
     }
 
+    public List<PokemonEvolution> getPossibleEvolutions() {
+        List<PokemonEvolution> possibleEvolutions = new ArrayList<>();
+        for (PokemonEvolution evolution : getEvolutions()) {
+            if (currentLevel < evolution.getRequiredLevel()) {
+                possibleEvolutions.add(evolution);
+            }
+        }
+        return possibleEvolutions;
+    }
+
     public void setEvolutions(List<PokemonEvolution> evolutions) {
         this.evolutions = evolutions;
     }
