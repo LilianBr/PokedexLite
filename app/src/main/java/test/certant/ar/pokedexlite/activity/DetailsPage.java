@@ -1,13 +1,13 @@
 package test.certant.ar.pokedexlite.activity;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -27,7 +27,8 @@ public class DetailsPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details_page);
-        // Fetching the selected pokemon
+
+        // Fetching the selected pokemon (being the current pokemon)
         String pokemonName = getIntent().getStringExtra(ARG_POKEMON_NAME);
         Pokemon pokemonToFetch = new Pokemon();
         pokemonToFetch.setName(pokemonName);
@@ -38,15 +39,14 @@ public class DetailsPage extends AppCompatActivity {
 
             final Pokemon currentPokemon = pokemons.get(indexCurrentPokemon);
 
-            // Complete the pokemon details
             final EditText nameEditText = findViewById(R.id.name);
             nameEditText.setText(currentPokemon.getName());
             final EditText levelEditText = findViewById(R.id.level);
             levelEditText.setText(String.valueOf(currentPokemon.getCurrentLevel()));
-            final ListView evolutionsView = initializeEvolutionsList(currentPokemon);
 
+            initializeEvolutionsList(currentPokemon);
             initializeAbilitiesList(currentPokemon);
-            initializeSaveDetailsButton(pokemons, indexCurrentPokemon, currentPokemon, nameEditText, levelEditText, evolutionsView);
+            initializeSaveDetailsButton(pokemons, indexCurrentPokemon, currentPokemon, nameEditText, levelEditText);
         }
     }
 
@@ -54,39 +54,40 @@ public class DetailsPage extends AppCompatActivity {
                                              final int indexCurrentPokemon,
                                              final Pokemon currentPokemon,
                                              final EditText nameEditText,
-                                             final EditText levelEditText,
-                                             final ListView evolutionsView) {
+                                             final EditText levelEditText) {
+
         DetailPokemon fragment = (DetailPokemon) getSupportFragmentManager().findFragmentById(R.id.detailsFragment);
         final Button saveDetails = fragment.getView().findViewById(R.id.saveDetails);
         saveDetails.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                currentPokemon.setCurrentLevel(Integer.valueOf(levelEditText.getText().toString()));
-                ;
-                currentPokemon.setEvolutions(
-                        modifyNameEvolution(currentPokemon, nameEditText.getText().toString()));
-                pokemons.set(indexCurrentPokemon, currentPokemon);
-                String debug = PokemonDao.toJson(pokemons).toString();
-                DaoFactory.loadPokemons(evolutionsView.getContext(), debug.getBytes());
+                String newLevelString = levelEditText.getText().toString();
+                if (!newLevelString.isEmpty() && Integer.valueOf(newLevelString) <= 100) {
+                    currentPokemon.setCurrentLevel(Integer.valueOf(newLevelString));
+
+                    currentPokemon.setEvolutions(
+                            modifyNameEvolution(currentPokemon, nameEditText.getText().toString()));
+                    pokemons.set(indexCurrentPokemon, currentPokemon);
+                    DaoFactory.loadPokemons(saveDetails.getContext(), PokemonDao.toJson(pokemons).toString().getBytes());
+                } else {
+                    Toast.makeText(DetailsPage.this, "The level should be between 0 and 100", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
     }
 
     private void initializeAbilitiesList(Pokemon currentPokemon) {
-        // Complete the abilities list
         final ArrayAdapter<String> abilitiesAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, currentPokemon.getAbilities());
         final ListView abilitiesView = findViewById(R.id.abilities);
         abilitiesView.setAdapter(abilitiesAdapter);
     }
 
-    @NonNull
-    private ListView initializeEvolutionsList(Pokemon currentPokemon) {
-        // Complete the evolutions list
-        List<PokemonEvolution> evolutions = currentPokemon.getEvolutions();
+    private void initializeEvolutionsList(Pokemon currentPokemon) {
+        List<PokemonEvolution> evolutions = currentPokemon.getPossibleEvolutions();
         EvolutionsAdapter evolutionsAdapter = new EvolutionsAdapter(this, evolutions);
         final ListView evolutionsView = findViewById(R.id.evolutions);
         evolutionsView.setAdapter(evolutionsAdapter);
-        return evolutionsView;
     }
 
     private List<PokemonEvolution> modifyNameEvolution(Pokemon pokemon, String newName) {

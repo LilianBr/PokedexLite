@@ -17,6 +17,7 @@ import test.certant.ar.pokedexlite.R;
  * create an instance of this fragment.
  */
 public class DetailPokemon extends Fragment {
+
     View view;
 
     @Override
