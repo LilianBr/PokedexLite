@@ -1,4 +1,4 @@
-package test.certant.ar.pokedexlite.activity.fragment;
+package ar.certant.test.pokedexlite.activity.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -7,7 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import test.certant.ar.pokedexlite.R;
+import ar.certant.test.pokedexlite.R;
 
 public class Evolutions extends Fragment {
     View view;

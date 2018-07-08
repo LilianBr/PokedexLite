@@ -1,4 +1,4 @@
-package test.certant.ar.pokedexlite.beans;
+package ar.certant.test.pokedexlite.beans;
 
 public class PokemonEvolution extends Creature{
 

@@ -1,4 +1,4 @@
-package test.certant.ar.pokedexlite.dao;
+package ar.certant.test.pokedexlite.dao;
 
 import android.content.Context;
 
@@ -12,7 +12,7 @@ import java.io.Reader;
 import java.io.StringWriter;
 import java.io.Writer;
 
-import test.certant.ar.pokedexlite.R;
+import ar.certant.test.pokedexlite.R;
 
 public class DaoFactory {
 

@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "test.certant.ar.pokedexlite"
+        applicationId "ar.certant.test.pokedexlite"
         minSdkVersion 21
         targetSdkVersion 28
         versionCode 1

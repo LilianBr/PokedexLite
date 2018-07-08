@@ -15,21 +15,21 @@
 
         <fragment
             android:id="@+id/detailsFragment"
-            android:name="test.certant.ar.pokedexlite.activity.fragment.DetailPokemon"
+            android:name="ar.certant.test.pokedexlite.activity.fragment.DetailPokemon"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:layout="@layout/fragment_detail_pokemon" />
 
         <fragment
             android:id="@+id/abilitiesFragment"
-            android:name="test.certant.ar.pokedexlite.activity.fragment.Abilities"
+            android:name="ar.certant.test.pokedexlite.activity.fragment.Abilities"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:layout="@layout/fragment_abilities" />
 
         <fragment
             android:id="@+id/evolutionsFragment"
-            android:name="test.certant.ar.pokedexlite.activity.fragment.Evolutions"
+            android:name="ar.certant.test.pokedexlite.activity.fragment.Evolutions"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:layout="@layout/fragment_evolutions" />

@@ -1,4 +1,4 @@
-package test.certant.ar.pokedexlite.activity;
+package ar.certant.test.pokedexlite.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,11 +12,11 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-import test.certant.ar.pokedexlite.R;
-import test.certant.ar.pokedexlite.activity.adapter.PokemonAdapter;
-import test.certant.ar.pokedexlite.beans.Pokemon;
-import test.certant.ar.pokedexlite.dao.DaoFactory;
-import test.certant.ar.pokedexlite.dao.PokemonDao;
+import ar.certant.test.pokedexlite.R;
+import ar.certant.test.pokedexlite.activity.adapter.PokemonAdapter;
+import ar.certant.test.pokedexlite.beans.Pokemon;
+import ar.certant.test.pokedexlite.dao.DaoFactory;
+import ar.certant.test.pokedexlite.dao.PokemonDao;
 
 public class Home extends AppCompatActivity {
 

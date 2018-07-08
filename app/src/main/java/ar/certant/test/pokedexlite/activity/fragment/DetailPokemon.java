@@ -1,4 +1,4 @@
-package test.certant.ar.pokedexlite.activity.fragment;
+package ar.certant.test.pokedexlite.activity.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -7,17 +7,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import test.certant.ar.pokedexlite.R;
+import ar.certant.test.pokedexlite.R;
 
 
-public class Abilities extends Fragment {
+/**
+ * A simple {@link Fragment} subclass.
+ * Activities that contain this fragment must implement the
+ * to handle interaction events.
+ * create an instance of this fragment.
+ */
+public class DetailPokemon extends Fragment {
 
     View view;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_abilities, container, false);
+        view = inflater.inflate(R.layout.fragment_detail_pokemon, container, false);
         return view;
     }
 

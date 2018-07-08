@@ -1,4 +1,4 @@
-package test.certant.ar.pokedexlite.activity.adapter;
+package ar.certant.test.pokedexlite.activity.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,8 +9,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import test.certant.ar.pokedexlite.R;
-import test.certant.ar.pokedexlite.beans.Pokemon;
+import ar.certant.test.pokedexlite.R;
+import ar.certant.test.pokedexlite.beans.Pokemon;
 
 public class PokemonAdapter extends ArrayAdapter<Pokemon> {
 

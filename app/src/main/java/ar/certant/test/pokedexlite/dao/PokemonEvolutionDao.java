@@ -1,4 +1,4 @@
-package test.certant.ar.pokedexlite.dao;
+package ar.certant.test.pokedexlite.dao;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -7,7 +7,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import test.certant.ar.pokedexlite.beans.PokemonEvolution;
+import ar.certant.test.pokedexlite.beans.PokemonEvolution;
 
 public class PokemonEvolutionDao {
 

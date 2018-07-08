@@ -1,4 +1,4 @@
-package test.certant.ar.pokedexlite.activity;
+package ar.certant.test.pokedexlite.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -11,13 +11,13 @@ import android.widget.Toast;
 
 import java.util.List;
 
-import test.certant.ar.pokedexlite.R;
-import test.certant.ar.pokedexlite.activity.adapter.EvolutionsAdapter;
-import test.certant.ar.pokedexlite.activity.fragment.DetailPokemon;
-import test.certant.ar.pokedexlite.beans.Pokemon;
-import test.certant.ar.pokedexlite.beans.PokemonEvolution;
-import test.certant.ar.pokedexlite.dao.DaoFactory;
-import test.certant.ar.pokedexlite.dao.PokemonDao;
+import ar.certant.test.pokedexlite.R;
+import ar.certant.test.pokedexlite.activity.adapter.EvolutionsAdapter;
+import ar.certant.test.pokedexlite.activity.fragment.DetailPokemon;
+import ar.certant.test.pokedexlite.beans.Pokemon;
+import ar.certant.test.pokedexlite.beans.PokemonEvolution;
+import ar.certant.test.pokedexlite.dao.DaoFactory;
+import ar.certant.test.pokedexlite.dao.PokemonDao;
 
 public class DetailsPage extends AppCompatActivity {
 
