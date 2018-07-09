@@ -3,6 +3,9 @@ package ar.certant.test.pokedexlite.beans;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Creature bean
+ */
 public class Creature {
 
     private String name;
@@ -17,6 +20,9 @@ public class Creature {
         return abilities;
     }
 
+    /**
+     * @return A String of every abilities (example: Water - Physic - Normal), return None ability if there is none ability available
+     */
     public String getAbilitiesString() {
         String abilitiesString = "None ability";
         if (!abilities.isEmpty()) {

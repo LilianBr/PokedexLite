@@ -12,6 +12,11 @@ import java.util.List;
 import ar.certant.test.pokedexlite.R;
 import ar.certant.test.pokedexlite.beans.Pokemon;
 
+/**
+ * Adapter for the pokemon list
+ * Its layout is pokemon_item.xml
+ * The name and the current level are displayed in each item
+ */
 public class PokemonAdapter extends ArrayAdapter<Pokemon> {
 
     public PokemonAdapter(Context context, List<Pokemon> pokemons) {

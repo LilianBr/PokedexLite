@@ -18,6 +18,10 @@ import ar.certant.test.pokedexlite.beans.Pokemon;
 import ar.certant.test.pokedexlite.dao.DaoFactory;
 import ar.certant.test.pokedexlite.dao.PokemonDao;
 
+/**
+ * Home Activity
+ * Display a list of the lastest pokemons
+ */
 public class Home extends AppCompatActivity {
 
     private static final String ARG_POKEMON_NAME = "pokemonName";
@@ -35,6 +39,9 @@ public class Home extends AppCompatActivity {
         initialize();
     }
 
+    /**
+     * Initialize all components of the view
+     */
     private void initialize() {
         // Initialization of the pokemon.json in the device
         File file = new File(this.getFilesDir(), DaoFactory.fileName);
@@ -46,11 +53,15 @@ public class Home extends AppCompatActivity {
             // Empty
         }
         final List<Pokemon> pokemons = PokemonDao.list(this.getApplicationContext());
-        initializePokemonsList(pokemons);
 
+        initializePokemonsList(pokemons);
         initializeRefreshLayout();
     }
 
+    /**
+     * Initialize the layout to refresh by swiping
+     * Refresh means reload the list of pokemons from the file in the internal storage
+     */
     private void initializeRefreshLayout() {
         final SwipeRefreshLayout refreshLayout = findViewById(R.id.swipeRefreshLayout);
         refreshLayout.setOnRefreshListener(
@@ -64,6 +75,12 @@ public class Home extends AppCompatActivity {
         );
     }
 
+    /**
+     * Initialize the ListView of the latest pokemons and stop the refreshing
+     * This ListView uses the adapter PokemonAdapter
+     *
+     * @param pokemons List of displayed pokemons
+     */
     private void initializePokemonsList(final List<Pokemon> pokemons) {
         final ListView pokemonsView = findViewById(R.id.pokemons);
         PokemonAdapter pokemonAdapter = new PokemonAdapter(this, pokemons);
@@ -71,12 +88,14 @@ public class Home extends AppCompatActivity {
 
         final SwipeRefreshLayout refreshLayout = findViewById(R.id.swipeRefreshLayout);
         refreshLayout.setRefreshing(false);
+
         pokemonsView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent,
                                     View view,
                                     int position,
                                     long id) {
+                // Start the DetailPokemon activity of the selected pokemon
                 String pokemonName = pokemons.get(position).getName();
                 Intent intent = new Intent(getApplicationContext(), DetailsPage.class);
                 intent.putExtra(ARG_POKEMON_NAME, pokemonName);

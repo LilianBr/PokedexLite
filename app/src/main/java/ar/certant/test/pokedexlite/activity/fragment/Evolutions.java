@@ -8,6 +8,10 @@ import android.view.ViewGroup;
 
 import ar.certant.test.pokedexlite.R;
 
+/**
+ * Android Fragment
+ * Display a list of possible evolutions
+ */
 public class Evolutions extends Fragment {
 
     @Override

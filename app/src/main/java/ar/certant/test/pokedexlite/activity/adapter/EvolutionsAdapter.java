@@ -12,6 +12,11 @@ import java.util.List;
 import ar.certant.test.pokedexlite.R;
 import ar.certant.test.pokedexlite.beans.PokemonEvolution;
 
+/**
+ * Adapter for evolution items in the Evolutions Fragment
+ * Its layout is evolution_item.xml
+ * The name, abilities and the required level are displayed in each item
+ */
 public class EvolutionsAdapter extends ArrayAdapter<PokemonEvolution> {
 
     public EvolutionsAdapter(Context context, List<PokemonEvolution> evolutions) {

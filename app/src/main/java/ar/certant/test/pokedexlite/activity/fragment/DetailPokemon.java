@@ -10,10 +10,8 @@ import ar.certant.test.pokedexlite.R;
 
 
 /**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * to handle interaction events.
- * create an instance of this fragment.
+ * Android Fragment
+ * Display the level and the name of the pokemon (editable)
  */
 public class DetailPokemon extends Fragment {
 

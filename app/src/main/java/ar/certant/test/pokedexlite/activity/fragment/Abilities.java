@@ -8,7 +8,10 @@ import android.view.ViewGroup;
 
 import ar.certant.test.pokedexlite.R;
 
-
+/**
+ * Android Fragment
+ * Display the list of all pokemon's abilities
+ */
 public class Abilities extends Fragment {
 
     @Override

@@ -14,6 +14,10 @@ import java.io.Writer;
 
 import ar.certant.test.pokedexlite.R;
 
+/**
+ * Dao Factory
+ * Manage the internal storage
+ */
 public class DaoFactory {
 
     public static final String fileName = "pokemons.json";
@@ -22,6 +26,12 @@ public class DaoFactory {
         super();
     }
 
+    /**
+     * Save the content into a file named pokemons.json (FILE_NAME) in the internal storage
+     *
+     * @param context Current context
+     * @param content Content file
+     */
     public static void loadPokemons(Context context, byte[] content) {
         File pokedexFile = new File(context.getFilesDir(), fileName);
         FileOutputStream outputStream;
@@ -34,6 +44,12 @@ public class DaoFactory {
         }
     }
 
+    /**
+     * Load the pokemons file (in the /raw directory of the project)
+     *
+     * @param context Current context
+     * @return Content of the pokedex (Json file)
+     */
     public static String loadPokemonsFile(Context context) {
         String pokemonsFile;
         Writer writer = new StringWriter();
@@ -51,6 +67,11 @@ public class DaoFactory {
         return pokemonsFile;
     }
 
+    /**
+     * Load the pokemons file (in the internal storage)
+     * @param context Current context
+     * @return Content of the pokedex (Json file stored in the internal storage)
+     */
     public static String loadPokedex(Context context) {
         File pokedexFile = new File(context.getFilesDir(), fileName);
         FileInputStream fileInputStream;
@@ -65,6 +86,12 @@ public class DaoFactory {
         return pokedexString;
     }
 
+    /**
+     * Convert a stream to a String
+     * @param inputStream
+     * @return
+     * @throws Exception
+     */
     private static String convertStreamToString(InputStream inputStream) throws Exception {
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         StringBuilder stringBuilder = new StringBuilder();

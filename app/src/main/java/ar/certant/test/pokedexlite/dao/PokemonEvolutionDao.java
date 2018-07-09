@@ -9,20 +9,29 @@ import java.util.List;
 
 import ar.certant.test.pokedexlite.beans.PokemonEvolution;
 
+/**
+ * DAO of the evolution entity
+ */
 public class PokemonEvolutionDao {
 
+    /**
+     * List all evolutions
+     *
+     * @param evolutionsJson Evolutions in JSON format
+     * @return List of evolutions
+     */
     public static List<PokemonEvolution> list(JSONArray evolutionsJson) {
         List<PokemonEvolution> evolutions = new ArrayList<>();
         try {
-            for(int i = 0 ; i<evolutionsJson.length() ; i++) {
+            for (int i = 0; i < evolutionsJson.length(); i++) {
                 PokemonEvolution evolution = new PokemonEvolution();
                 evolution.setName(evolutionsJson.getJSONObject(i).getString("name"));
                 evolution.setRequiredLevel(evolutionsJson.getJSONObject(i).getInt("requiredLevel"));
                 JSONArray abilitiesJson = evolutionsJson.getJSONObject(i).getJSONArray("abilities");
 
                 List<String> abilities = new ArrayList<>();
-                for (int j = 0 ; j < abilitiesJson.length() ; j++) {
-                     abilities.add(abilitiesJson.getString(j));
+                for (int j = 0; j < abilitiesJson.length(); j++) {
+                    abilities.add(abilitiesJson.getString(j));
                 }
                 evolution.setAbilities(abilities);
                 evolutions.add(evolution);
@@ -33,7 +42,14 @@ public class PokemonEvolutionDao {
         return evolutions;
     }
 
-
+    /**
+     * Build a JSON array regarding to the pokemon evolutions
+     * See in /res/raw/pokemons.json the JSON Object evolution for the format
+     *
+     * @param evolutions List of evolutions
+     * @return JSON array
+     * @throws JSONException
+     */
     public static JSONArray toJson(List<PokemonEvolution> evolutions) throws JSONException {
         JSONArray evolutionsJson = new JSONArray();
         for (PokemonEvolution evolution : evolutions) {

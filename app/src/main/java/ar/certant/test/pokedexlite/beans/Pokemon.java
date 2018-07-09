@@ -19,6 +19,11 @@ public class Pokemon extends Creature{
         return evolutions;
     }
 
+    /**
+     * Select evolutions with a required level superior or equal to the current level
+     *
+     * @return List of the possible evolutions according to the current level of the pokemon
+     */
     public List<PokemonEvolution> getPossibleEvolutions() {
         List<PokemonEvolution> possibleEvolutions = new ArrayList<>();
         for (PokemonEvolution evolution : getEvolutions()) {
