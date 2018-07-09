@@ -14,6 +14,10 @@ import ar.certant.test.pokedexlite.beans.PokemonEvolution;
  */
 public class PokemonEvolutionDao {
 
+    private static final String JSON_TAG_NAME = "name";
+    private static final String JSON_TAG_REQUIRED_LEVEL = "requiredLevel";
+    private static final String JSON_TAG_ABILITIES = "abilities";
+
     /**
      * List all evolutions
      *
@@ -25,9 +29,9 @@ public class PokemonEvolutionDao {
         try {
             for (int i = 0; i < evolutionsJson.length(); i++) {
                 PokemonEvolution evolution = new PokemonEvolution();
-                evolution.setName(evolutionsJson.getJSONObject(i).getString("name"));
-                evolution.setRequiredLevel(evolutionsJson.getJSONObject(i).getInt("requiredLevel"));
-                JSONArray abilitiesJson = evolutionsJson.getJSONObject(i).getJSONArray("abilities");
+                evolution.setName(evolutionsJson.getJSONObject(i).getString(JSON_TAG_NAME));
+                evolution.setRequiredLevel(evolutionsJson.getJSONObject(i).getInt(JSON_TAG_REQUIRED_LEVEL));
+                JSONArray abilitiesJson = evolutionsJson.getJSONObject(i).getJSONArray(JSON_TAG_ABILITIES);
 
                 List<String> abilities = new ArrayList<>();
                 for (int j = 0; j < abilitiesJson.length(); j++) {
@@ -54,15 +58,15 @@ public class PokemonEvolutionDao {
         JSONArray evolutionsJson = new JSONArray();
         for (PokemonEvolution evolution : evolutions) {
             JSONObject evolutionJson = new JSONObject();
-            evolutionJson.put("name", evolution.getName());
-            evolutionJson.put("requiredLevel", evolution.getRequiredLevel());
+            evolutionJson.put(JSON_TAG_NAME, evolution.getName());
+            evolutionJson.put(JSON_TAG_REQUIRED_LEVEL, evolution.getRequiredLevel());
 
             // Abilities Array
             JSONArray abilities = new JSONArray();
             for (String ability : evolution.getAbilities()) {
                 abilities.put(ability);
             }
-            evolutionJson.put("abilities", abilities);
+            evolutionJson.put(JSON_TAG_ABILITIES, abilities);
 
             evolutionsJson.put(evolutionJson);
         }

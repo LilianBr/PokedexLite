@@ -1,7 +1,6 @@
 package ar.certant.test.pokedexlite.dao;
 
 import android.content.Context;
-import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -18,6 +17,11 @@ import ar.certant.test.pokedexlite.beans.PokemonEvolution;
  */
 public class PokemonDao {
 
+    private static final String JSON_TAG_POKEDEX = "pokedex";
+    private static final String JSON_TAG_POKEMEN = "pokemon";
+    private static final String JSON_TAG_CURRENT_LEVEL = "currentLevel";
+    private static final String JSON_TAG_EVOLUTION = "evolution";
+
     /**
      * List all pokemons available in the pokedex
      *
@@ -28,12 +32,12 @@ public class PokemonDao {
         List<Pokemon> pokemons = new ArrayList<>();
         try {
             JSONObject pokedex = new JSONObject(DaoFactory.loadPokedex(context));
-            JSONArray pokemonsJson = pokedex.getJSONObject("pokedex").getJSONArray("pokemon");
+            JSONArray pokemonsJson = pokedex.getJSONObject(JSON_TAG_POKEDEX).getJSONArray(JSON_TAG_POKEMEN);
             for (int i = 0; i < pokemonsJson.length(); i++) {
                 Pokemon pokemon = new Pokemon();
-                pokemon.setCurrentLevel(pokemonsJson.getJSONObject(i).getInt("currentLevel"));
+                pokemon.setCurrentLevel(pokemonsJson.getJSONObject(i).getInt(JSON_TAG_CURRENT_LEVEL));
 
-                JSONArray evolutionsJson = pokemonsJson.getJSONObject(i).getJSONArray("evolution");
+                JSONArray evolutionsJson = pokemonsJson.getJSONObject(i).getJSONArray(JSON_TAG_EVOLUTION);
                 pokemon.setEvolutions(PokemonEvolutionDao.list(evolutionsJson));
                 pokemons.add(chooseEvolution(pokemon));
             }
@@ -75,7 +79,6 @@ public class PokemonDao {
     public static int findByName(List<Pokemon> pokemons, Pokemon pokemon) {
         boolean pokemonFound = false;
         int index = -1;
-        Log.i("debug", String.valueOf(pokemons.size()));
         while (!pokemonFound && (index + 1) < pokemons.size()) {
             index++;
             if (pokemons.get(index).getName().equals(pokemon.getName())) {
@@ -98,12 +101,12 @@ public class PokemonDao {
         try {
             for (Pokemon pokemon : pokemons) {
                 JSONObject pokemonJson = new JSONObject();
-                pokemonJson.put("currentLevel", pokemon.getCurrentLevel());
-                pokemonJson.put("evolution", PokemonEvolutionDao.toJson(pokemon.getEvolutions()));
+                pokemonJson.put(JSON_TAG_CURRENT_LEVEL, pokemon.getCurrentLevel());
+                pokemonJson.put(JSON_TAG_EVOLUTION, PokemonEvolutionDao.toJson(pokemon.getEvolutions()));
                 pokemonsJson.put(pokemonJson);
             }
-            pokedexJson.put("pokemon", pokemonsJson);
-            rootJson.put("pokedex", pokedexJson);
+            pokedexJson.put(JSON_TAG_POKEMEN, pokemonsJson);
+            rootJson.put(JSON_TAG_POKEDEX, pokedexJson);
         } catch (JSONException e) {
             rootJson = new JSONObject();
         }
