@@ -44,7 +44,7 @@ public class Home extends AppCompatActivity {
      */
     private void initialize() {
         // Initialization of the pokemon.json in the device
-        File file = new File(this.getFilesDir(), DaoFactory.fileName);
+        File file = new File(this.getFilesDir(), DaoFactory.FILE_NAME);
         try {
             if (file.createNewFile()) {
                 DaoFactory.loadPokemons(this.getApplicationContext(), DaoFactory.loadPokemonsFile(this.getApplicationContext()).getBytes());

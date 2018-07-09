@@ -30,7 +30,7 @@ public class DaoFactoryTest {
         Context appContext = InstrumentationRegistry.getTargetContext();
         String content = "My content";
         DaoFactory.loadPokemons(appContext, content.getBytes());
-        File file = new File(appContext.getFilesDir(), DaoFactory.fileName);
+        File file = new File(appContext.getFilesDir(), DaoFactory.FILE_NAME);
         assertFalse(file.createNewFile());
     }
 

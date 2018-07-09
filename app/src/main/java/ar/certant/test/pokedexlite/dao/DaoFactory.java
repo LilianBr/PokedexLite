@@ -20,7 +20,7 @@ import ar.certant.test.pokedexlite.R;
  */
 public class DaoFactory {
 
-    public static final String fileName = "pokemons.json";
+    public static final String FILE_NAME = "pokemons.json";
 
     private DaoFactory() {
         super();
@@ -33,10 +33,10 @@ public class DaoFactory {
      * @param content Content file
      */
     public static void loadPokemons(Context context, byte[] content) {
-        File pokedexFile = new File(context.getFilesDir(), fileName);
+        File pokedexFile = new File(context.getFilesDir(), FILE_NAME);
         FileOutputStream outputStream;
         try {
-            outputStream = context.getApplicationContext().openFileOutput(fileName, Context.MODE_PRIVATE);
+            outputStream = context.getApplicationContext().openFileOutput(FILE_NAME, Context.MODE_PRIVATE);
             outputStream.write(content);
             outputStream.close();
         } catch (Exception e) {
@@ -73,7 +73,7 @@ public class DaoFactory {
      * @return Content of the pokedex (Json file stored in the internal storage)
      */
     public static String loadPokedex(Context context) {
-        File pokedexFile = new File(context.getFilesDir(), fileName);
+        File pokedexFile = new File(context.getFilesDir(), FILE_NAME);
         FileInputStream fileInputStream;
         String pokedexString;
         try {
